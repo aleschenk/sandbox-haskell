@@ -1,0 +1,103 @@
+cabal-version:      2.4
+name:               sandbox-haskell
+version:            0.1.0.0
+
+-- A short (one-line) description of the package.
+-- synopsis:
+
+-- A longer description of the package.
+description: Please see the README on GitHub at <https://github.com/githubuser/sandbox-haskell#readme>
+
+-- A URL where users can report bugs.
+bug-reports: https://github.com/aleschenk/sandbox-haskell/issues
+
+-- A URL for the project homepage or the cabal package.
+homepage: https://github.com/aleschenk/sandbox-haskell#readme
+
+-- The license under which the package is released.
+license: BSD-3-Clause
+
+-- The file containing the license text.
+license-file: LICENSE
+
+-- The package author(s).
+author: Alejandro Schenk
+
+-- An email address to which users can send suggestions, bug reports, and patches.
+maintainer: ale.schenk@gmail.com
+
+-- A copyright notice.
+copyright: 2024 Alejandro Schenk
+
+-- category:
+
+-- Whether the package is a library, a program, or both.
+build-type: Simple
+
+-- Extra files to be distributed with the package, such as examples or a README.
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+common shared-properties
+  default-language: Haskell2010
+  build-depends:
+    base ^>=4.17.2.0
+    -- ,  GLFW-b
+    -- , GLUT
+    -- , OpenGL
+    -- , async
+    -- , base >=4.7 && <5
+    -- , containers
+    -- , filepath
+    -- , ghc-prim
+    -- , gloss
+    -- , gloss-raster
+    -- , gloss-rendering
+    -- , net-mqtt
+    -- , network-uri
+    -- , repa
+    -- , sandbox-haskell
+    -- , scotty
+    -- , text
+    -- , vector
+  ghc-options:
+    -Wall
+    -- -threaded -rtsopts -with-rtsopts=-N
+
+library sandbox-haskell-lib
+    import: shared-properties
+
+    exposed-modules:  MyLib
+                      OtherLib
+                      RestServer
+                      LedgerAccount
+                      Journal
+                      BasicSum
+    -- other-modules:
+    -- other-extensions:
+    build-depends:    base ^>=4.17.2.0
+                    , directory
+                    , scotty
+                    , safe-money
+    hs-source-dirs:   src
+
+executable sandbox-haskell
+    import: shared-properties
+    main-is:          Main.hs
+    -- other-modules:
+    -- other-extensions:
+    build-depends:
+        base ^>=4.17.2.0,
+        sandbox-haskell-lib
+
+    hs-source-dirs:   app
+
+test-suite sandbox-haskell-test
+    import: shared-properties
+    type: exitcode-stdio-1.0
+    main-is: BasicSumTest.hs
+    -- other-modules:
+    -- other-extensions:
+    build-depends: HUnit ^>=1.6, hspec ^>= 2.11.7, sandbox-haskell-lib
+    hs-source-dirs: tests
