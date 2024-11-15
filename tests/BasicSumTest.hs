@@ -1,7 +1,6 @@
 module Main where
 
 import Test.HUnit
-import LedgerAccountSpec (spec)
 import BasicSum (basicSum)
 import qualified System.Exit as Exit
  
