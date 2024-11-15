@@ -1,10 +1,10 @@
 {-# LANGUAGE OverloadedStrings #-}
 module RestServer where
 
-import Web.Scotty
+import Web.Scotty.Trans
 
 main :: IO ()
-main = scotty 3000 $ do
+main = scottyT 3000 id $ do
     get "/:word" $ do
-        beam <- param "word"
+        beam <- captureParam "word"
         text (beam <> " Scotty!")

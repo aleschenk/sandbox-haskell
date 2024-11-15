@@ -74,7 +74,8 @@ library sandbox-haskell-lib
                       LedgerAccount
                       Journal
                       BasicSum
-    -- other-modules:
+                      Budget
+
     -- other-extensions:
     build-depends:    base ^>=4.17.2.0
                     , directory
@@ -97,7 +98,8 @@ test-suite sandbox-haskell-test
     import: shared-properties
     type: exitcode-stdio-1.0
     main-is: BasicSumTest.hs
-    -- other-modules:
+    other-modules:
+        BudgetSpec
     -- other-extensions:
     build-depends: HUnit ^>=1.6, hspec ^>= 2.11.7, sandbox-haskell-lib
     hs-source-dirs: tests

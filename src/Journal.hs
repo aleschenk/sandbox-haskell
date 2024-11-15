@@ -1,4 +1,4 @@
-module Journal where
+module Journal (Journal(..), Entry(..), createJournal, addEntry, getJournal, getOrCreateJournal) where
 
 data Journal = Journal
   { journalName :: String
@@ -45,3 +45,8 @@ getOrCreateJournal :: String -> [Journal] -> Journal
 getOrCreateJournal name journals = case getJournal name journals of
   Just journal -> journal
   Nothing -> createJournal name [] 0
+
+-- | Sum two integers.
+-- >>> sumaa 1 4
+-- 5
+sumaa a b = a + b
